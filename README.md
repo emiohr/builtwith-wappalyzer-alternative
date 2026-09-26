@@ -85,4 +85,11 @@ Prices as listed on the vendors' pricing pages in September 2026.
 
 **Is it legal?** It reads publicly available information about websites, not personal data.
 
+## More SEO tools from the same developer
+
+- [Backlink Checker API](https://github.com/emiohr/backlink-checker-api): every backlink, referring domains and competitor link gap
+- [Bulk Domain Authority Checker API](https://github.com/emiohr/bulk-domain-authority-checker): domain rank and backlink totals for 1,000s of domains
+- [Keyword Research API](https://github.com/emiohr/keyword-research-api): search volume, keyword difficulty, intent and AI Overviews
+- [Google Trends API](https://github.com/emiohr/google-trends-api): interest over time, rising queries and regions
+
 *Not affiliated with BuiltWith or Wappalyzer; names are used for comparison only. Examples are MIT licensed.*
