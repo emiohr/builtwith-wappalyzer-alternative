@@ -4,6 +4,8 @@ Find out **what any website is built with, in bulk**: CMS, ecommerce platform, p
 
 It uses the [**Tech Stack Detector**](https://apify.com/jesting_grass/tech-stack-detector) on Apify: up to 20 technologies per site with categories, from a commercial technographics provider. Invalid, offline or undetectable sites are not charged.
 
+📖 Tutorial: [Find any website's tech stack in bulk with Python](https://dev.to/jesting_grass/find-any-websites-tech-stack-in-bulk-with-python-a-pay-per-use-builtwith-wappalyzer-alternative-51bc)
+
 ## Quick start (Python)
 
 ```bash
