@@ -2,7 +2,7 @@
 
 Find out **what any website is built with, in bulk**: CMS, ecommerce platform, payment providers, analytics, CRM, marketing automation, hosting, CDN and frameworks — as JSON or a CSV-ready table. Pay per website, **no $250–$295/month subscription**.
 
-It uses the [**Tech Stack Detector**](https://apify.com/jesting_grass/tech-stack-detector) on Apify: up to 20 technologies per site with categories, from a commercial technographics provider. Invalid, offline or undetectable sites are not charged.
+It uses the [**Tech Stack Detector**](https://apify.com/jesting_grass/tech-stack-detector) on Apify: it fetches each live website and matches it against 7,600+ open-source technology fingerprints (the Wappalyzer format), with categories, versions and confidence. Invalid, offline or undetectable sites are not charged, and neither are sites that block automated visits.
 
 📖 Tutorial: [Find any website's tech stack in bulk with Python](https://dev.to/jesting_grass/find-any-websites-tech-stack-in-bulk-with-python-a-pay-per-use-builtwith-wappalyzer-alternative-51bc)
 
@@ -21,17 +21,17 @@ run = client.actor("jesting_grass/tech-stack-detector").call(run_input={
     "domains": ["allbirds.com", "gymshark.com", "klarna.com", "hubspot.com", "ikea.com"],
 })
 for row in client.dataset(run.default_dataset_id).iterate_items():
-    print(row["domain"], "|", row.get("cms"), "|", row.get("payments"))
+    print(row["domain"], "|", row.get("ecommerce") or row.get("cms"), "|", row.get("payments"))
 ```
 
 Real output (September 2026):
 
 ```
-klarna.com     CMS: Contentful             payments: Klarna Checkout
-gymshark.com   CMS: Contentful, Shopify    payments: -
-allbirds.com   CMS: Shopify                payments: Stripe
-ikea.com       CMS: WordPress              payments: -
-hubspot.com    CMS: HubSpot CMS Hub        payments: -
+gymshark.com   platform: Shopify              payments: Apple Pay, PayPal
+ikea.com       platform: Astro                payments: -
+allbirds.com   platform: Shopify              payments: Apple Pay, PayPal
+hubspot.com    platform: HubSpot CMS Hub      payments: -
+klarna.com     platform: Contentful           payments: Klarna Checkout
 ```
 
 ## Examples
@@ -55,7 +55,7 @@ hubspot.com    CMS: HubSpot CMS Hub        payments: -
 | `marketingAutomation`, `crm` | `HubSpot` |
 | `hosting`, `cdn`, `webServers` | `Cloudflare, jsDelivr` |
 | `jsFrameworks`, `programmingLanguages` | `React, Next.js` |
-| `technologies` | full list with name, categories and vendor website |
+| `technologies` | full list with name, version, confidence, categories and vendor website |
 | `matchedTechnologies` | set when you use the `onlyDomainsUsing` lead filter |
 
 ## BuiltWith vs Wappalyzer vs this
@@ -83,7 +83,9 @@ Prices as listed on the vendors' pricing pages in September 2026.
 
 **Can it find every website using a technology?** It analyzes the domains you give it. Pair it with any domain source (lead list, Google Maps or search results) and use `onlyDomainsUsing` to keep the matches.
 
-**Is it legal?** It reads publicly available information about websites, not personal data.
+**Is it legal?** It reads publicly available website code, not personal data.
+
+**Where do the fingerprints come from?** From the open-source [enthec/webappanalyzer](https://github.com/enthec/webappanalyzer) database (GPL-3.0), the community-maintained successor of Wappalyzer's open fingerprints.
 
 ## More SEO tools from the same developer
 

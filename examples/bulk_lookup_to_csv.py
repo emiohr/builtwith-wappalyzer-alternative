@@ -21,5 +21,6 @@ with open("tech_stacks.csv", "w", newline="", encoding="utf-8") as f:
     for row in client.dataset(run.default_dataset_id).iterate_items():
         if "error" not in row:
             writer.writerow(row)
-            print(f'{row["domain"]:<14} CMS: {row["cms"] or "-":<22} payments: {row["payments"] or "-"}')
+            platform = row["ecommerce"] or row["cms"] or "-"
+            print(f'{row["domain"]:<14} platform: {platform:<20} payments: {row["payments"] or "-"}')
 print("Saved tech_stacks.csv")
